@@ -22,3 +22,9 @@ def divide(a, b):
     if b == 0:
         raise ZeroDivisionError("Деление на ноль!")
     return a / b
+
+
+def square(a):
+    if not isinstance(a, (int, float)):
+        raise TypeError("Аргументы должны быть числами")
+    return a ** 2

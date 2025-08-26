@@ -9,15 +9,18 @@ first = 0
 second = 0
 
 def calc():
-    second = float(entry.get())
-    if operation == "+":
-        result = c.add(float(first), float(second))
-    elif operation == "-":
-        result = c.subtruct(float(first), float(second))
-    elif operation == "*":
-        result = c.multiply(float(first), float(second))
-    elif operation == "/":
-        result = c.divide(float(first), float(second))
+    if operation == "**":
+        result = c.square(float(first))
+    else:
+        second = float(entry.get())
+        if operation == "+":
+            result = c.add(float(first), float(second))
+        elif operation == "-":
+            result = c.subtruct(float(first), float(second))
+        elif operation == "*":
+            result = c.multiply(float(first), float(second))
+        elif operation == "/":
+            result = c.divide(float(first), float(second))
     entry.delete(0, END)
     entry.insert(0, str(result))
 
@@ -31,9 +34,19 @@ def clear_entry():
 
 def enter_operation(op):
     global operation, first
-    first = float(entry.get())
-    operation = op
-    entry.delete(0, END)
+    entry_value = entry.get().strip()
+    if entry_value:
+        first = float(entry_value)
+        operation = op
+        entry.delete(0, END)
+
+
+def square_calc():
+    entry_value = entry.get().strip()
+    if entry_value:
+        result = c.square(float(entry_value))
+        entry.delete(0, END)
+        entry.insert(0, str(result))
 
 
 def validate_entry():
@@ -65,9 +78,10 @@ ttk.Button(text="+", command=lambda: enter_operation("+")).grid(row=1, column=3)
 ttk.Button(text="-", command=lambda: enter_operation("-")).grid(row=2, column=3)
 ttk.Button(text="*", command=lambda: enter_operation("*")).grid(row=3, column=3)
 ttk.Button(text="/", command=lambda: enter_operation("/")).grid(row=4, column=3)
-
-ttk.Button(text="=", command=lambda: entry.insert(END, calc())).grid(row=4, column=2)
+ttk.Button(text="=", command=calc).grid(row=4, column=2)
 ttk.Button(text="C", command=clear_entry).grid(row=4, column=1)
+
+ttk.Button(text="square", command=square_calc).grid(row=5, column=0, columnspan=4, sticky="ew")
 
 
 window.mainloop()

@@ -1,6 +1,7 @@
 import calculator_logic as c
 import pytest
 
+
 def test_add():
     assert c.add(1, 2) == 3
     assert c.add(-1, 1) == 0
@@ -48,6 +49,7 @@ def test_multiply():
     with pytest.raises(TypeError):
         c.multiply('ss', '2')
 
+
 def test_divide():
     assert c.divide(10, 2) == 5
     assert c.divide(-1, 1) == -1
@@ -66,6 +68,18 @@ def test_divide():
         c.divide(10, 0)
 
 
+def test_square():
+    assert c.square(10) == 100
+    assert c.square(-1) == 1
+    assert c.square(0) == 0
+
+    with pytest.raises(TypeError):
+        c.square("r")
+
+    with pytest.raises(TypeError):
+        c.square('ss')
+
+
 test_add()
 print('Тесты на сложение пройдены успешно')
 
@@ -77,3 +91,6 @@ print('Тесты на умножение пройдены успешно')
 
 test_divide()
 print('Тесты на деление пройдены успешно')
+
+test_square()
+print('Тесты на возведение в квадрат пройдены успешно')
