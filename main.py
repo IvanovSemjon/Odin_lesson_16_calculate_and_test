@@ -1,12 +1,9 @@
 from tkinter import *
 from tkinter import ttk
 import calculator_logic as c
-from unittest import result
-from tkinter import StringVar
 
 operation = ''
 first = 0
-second = 0
 
 def calc():
     if operation == "**":
